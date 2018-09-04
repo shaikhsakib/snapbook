@@ -8,7 +8,8 @@
         </head>
         <body>
         <h3 class="text-center">Welcome! Please login</h3>
-            <form:form style="background-color:#1abc9c;margin:auto;padding:10%;width:50%;margin-top:10%;border:5px double gold"  id="loginForm" modelAttribute="login" action="loginProcess" method="post">
+            <form:form style="background-color:#1abc9c;margin:auto;padding:10%;width:50%;margin-top:10%;border:5px double gold"  
+            id="loginForm" modelAttribute="login" action="loginProcess" method="post">
                 
                 <table align="center">
                 
@@ -32,7 +33,9 @@
                     <tr>
                         <td></td>
                         <td align="left">
-                            <form:button id="login" name="login">Login</form:button> <h3>OR</h3>
+                            <form:button id="login" name="login">Login</form:button>
+                            <h4>${message}</h4>
+                             <h3>OR</h3>
                             <a href="/snapbook/register">Register</a>
                         </td>
                     </tr>

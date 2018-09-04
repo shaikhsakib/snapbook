@@ -39,26 +39,34 @@ public class SnapUserDaoImpl implements SnapUserDao{
 		  return userList;  
 	}
 
-	public void updateData(SnapUser snapuser) {
-		String sql = "UPDATE snapuser set firstname = ?,lastname = ?, email = ?, password = ? where mobile = ?";  
+	public void updateData(SnapUser user) {
+
+		  String sql = "UPDATE snapuser set firstname = ?,lastname = ?, email = ?, mobile = ?, password = ?, where mobile=?";  
 		  JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  
 		  
 		  jdbcTemplate.update(  
 		    sql,  
-		    new Object[] { snapuser.getFirstName(), snapuser.getLastName(),  
-		    		snapuser.getEmail(), snapuser.getMobile(), snapuser.getUserId() }); 
+		    new Object[] { user.getFirstName(), user.getLastName(),  
+		      user.getEmail(), user.getMobile(), user.getPassword() });
+	
 		
 	}
 
 	public void deleteData(String id) {
 		// TODO Auto-generated method stub
-		
-	}
+}
 
-	public SnapUser getUser(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public SnapUser getUser(String mobile) {
+		List<SnapUser> userList = new ArrayList<SnapUser>();  
+		  String sql = "select * from snapuser where mobile='"+mobile+"';";  
+		  JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  
+		  userList = jdbcTemplate.query(sql, new UserRowMapper()); 
+		  if(userList.isEmpty()) {
+			  return null;
+		  }
+		  return userList.get(0); 
 	}
+	
 	public SnapUser validateuser(Login login) {
 	    String sql = "select * from snapuser where email='" + login.getEmail() + "' and password='" + login.getPassword()
 	    + "'";

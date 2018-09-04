@@ -10,6 +10,6 @@ public interface SnapUserService {
 	public SnapUser validateuser(Login login);
 	 public List<SnapUser> getUserList();  
 	 public void deleteData(String id);  
-	 public SnapUser getUser(String id);  
+	 public SnapUser getUser(String mobile);  
 	 public void updateData(SnapUser snapuser); 
 }

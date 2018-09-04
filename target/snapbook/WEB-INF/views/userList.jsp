@@ -13,7 +13,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>  
 <body>  
- <center>  
+<%@ include file="navbar.jsp" %> 
   <h3>List of Users availing our Social Network Services</h3>
   <table class="table table-striped" border="1">  
    <tr>  
@@ -22,6 +22,7 @@
     <td class="heading">Last Name</td>
         <td class="heading">Email</td>  
     <td class="heading">Mobile</td>  
+    <td class="heading">Actions</td>  
    </tr>  
    <c:forEach var="user" items="${userList}">  
     <tr>
@@ -29,25 +30,13 @@
      <td>${user.firstName}</td>  
      <td>${user.lastName}</td>  
           <td>${user.email}</td>  
-     <td>${user.mobile}</td>  
+     <td>${user.mobile}</td> 
+     <c:url value="/edit/${user.mobile}" var="deleteUrl"></c:url>
+     <td><a href="${deleteUrl }"><span class="glyphicon glyphicon-edit"></span></a>
+</td>  
     </tr>  
    </c:forEach>  
   </table>  
-  
- </center> 
  
- <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
-<head th:replace="layout :: site-head">
-    <title>Spring MVC Blog</title>
-</head>
-
-<body>
-
-</body>
-
-</html> 
-  
 </body>  
 </html> 

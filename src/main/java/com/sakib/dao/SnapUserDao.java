@@ -11,5 +11,5 @@ public interface SnapUserDao {
 	public List<SnapUser> getUserList();  
 	 public void updateData(SnapUser user);  
 	 public void deleteData(String id);  
-	 public SnapUser getUser(String id);  
+	 public SnapUser getUser(String email);  
 }

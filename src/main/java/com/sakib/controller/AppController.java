@@ -4,10 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sakib.model.Login;
@@ -48,11 +53,7 @@ public class AppController {
 		return "login";
 	}
 	
-	@RequestMapping("/editPage")
-	public String getupdatepage(@ModelAttribute SnapUser update, Model model) {
-		model.addAttribute("update", update);
-		return "editProfile";
-	}
+	
 	
 	@RequestMapping(value = "/loginProcess", method = RequestMethod.POST)
 	  public ModelAndView loginProcess(HttpServletRequest request, HttpServletResponse response,
@@ -82,11 +83,37 @@ public class AppController {
 	  return new ModelAndView("userList", "userList", userList);  
 	 } 
 	
-	 @RequestMapping("/update")  
-	 public String updateUser(@ModelAttribute SnapUser snapuser) {  
-	  snapuserService.updateData(snapuser);  
-	  return "redirect:/getList";  
+
+	 
+	@RequestMapping("/edit/{mobile}")  
+	 public ModelAndView editUser(@PathVariable String mobile,  
+	   @ModelAttribute("user") SnapUser user) {  
 	  
-	 }  
+	  user = snapuserService.getUser(mobile);  
+	    
+	  List<String> usperproperties = new ArrayList<String>();
+	  usperproperties.add("userId");
+	  usperproperties.add("firstName");  
+	  usperproperties.add("lastName");  
+	  usperproperties.add("email");  
+	  usperproperties.add("mobile");
+	  usperproperties.add("password");
+	  
+	  Map<String, Object> map = new HashMap<String, Object>();  
+	  map.put("usperproperties", usperproperties);    
+	  map.put("user", user);  
+	  
+	  return new ModelAndView("editProfile", "map", map);  
+	  
+	 } 
 	
-}
+	@RequestMapping("/update")  
+	 public String updateUser(@ModelAttribute SnapUser user, BindingResult result) {  
+		snapuserService.updateData(user);
+		if(result.hasErrors()) {
+	  return "registrationform";  
+		}
+		return "userList";
+	 } 
+}	
+	

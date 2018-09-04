@@ -13,37 +13,39 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>   
 </head>  
-<body>    
+<body>  
+<%@ include file="header.jsp" %> 
   <h1 class="text-center">Edit User Details</h1>  
-  <div class="container text-center">  
-   <form:form method="post" action="/update" modelAttribute="update">  
+  <div class="container text-center"> 
+  
+   <form:form method="post" action="update" modelAttribute="user">  
     <table>  
      <tr>  
       <td>First Name :</td>  
       <td><form:input path="firstName"  
-        value="${user.firstName}" />  
+        value="${map.user.firstName}" />  
       </td>  
      </tr>  
      <tr>  
       <td>Last Name :</td>  
-      <td><form:input path="lastName" value="${user.lastName}" />  
+      <td><form:input path="lastName" value="${map.user.lastName}" />  
       </td>  
      </tr>  
      <tr>  
       <td>Email :</td>  
-      <td><form:input path="email" value="${user.email}" />  
+      <td><form:input path="email" value="${map.user.email}" />  
       </td>  
      </tr>  
      <tr>  
   
       <td>Mobile :</td>  
-      <td><form:input path="lastName" value="${user.mobile}" />  
+      <td><form:input path="mobile" value="${map.user.mobile}" />  
       </td>  
      </tr> 
      <tr>  
   
       <td>Password :</td>  
-      <td><form:input path="lastName" value="${user.password}" />  
+      <td><form:input path="password" value="${map.user.password}" />  
       </td>  
      </tr>  
      <tr>  
@@ -52,7 +54,7 @@
       </td>  
      </tr>  
     </table>  
-    <form:hidden path="userId" value="${map.user.userId}" />  
+    
   
    </form:form>  
   </div>  

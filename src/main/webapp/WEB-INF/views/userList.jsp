@@ -22,6 +22,7 @@
     <td class="heading">Last Name</td>
         <td class="heading">Email</td>  
     <td class="heading">Mobile</td>  
+    <td class="heading">Actions</td>  
    </tr>  
    <c:forEach var="user" items="${userList}">  
     <tr>
@@ -29,7 +30,10 @@
      <td>${user.firstName}</td>  
      <td>${user.lastName}</td>  
           <td>${user.email}</td>  
-     <td>${user.mobile}</td>  
+     <td>${user.mobile}</td> 
+     <c:url value="/edit/${user.mobile}" var="deleteUrl"></c:url>
+     <td><a href="${deleteUrl }"><span class="glyphicon glyphicon-edit"></span></a>
+</td>  
     </tr>  
    </c:forEach>  
   </table>  
