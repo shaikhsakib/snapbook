@@ -31,8 +31,12 @@
      <td>${user.lastName}</td>  
           <td>${user.email}</td>  
      <td>${user.mobile}</td> 
-     <c:url value="/edit/${user.mobile}" var="deleteUrl"></c:url>
-     <td><a href="${deleteUrl }"><span class="glyphicon glyphicon-edit"></span></a>
+     <c:url value="/edit/${user.userId}" var="editUrl"></c:url>
+          <c:url value="/delete/${user.userId}" var="deleteUrl"></c:url>
+     
+     
+     <td><a href="${editUrl }">Edit <span class="glyphicon glyphicon-edit"> </span></a>  OR 
+     <a href="${deleteUrl }">Delete <span class=" glyphicon glyphicon-remove"></span></a>
 </td>  
     </tr>  
    </c:forEach>  

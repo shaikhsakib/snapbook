@@ -27,16 +27,17 @@ public class SnapUserServiceImpl implements SnapUserService{
 		  return snapuserdao.getUserList();  
 	}
 
-	public void deleteData(String id) {
-		  snapuserdao.deleteData(id);  
+	public String deleteData(String id) {
+		  
+		return snapuserdao.deleteData(id);  
 	}
 
-	public SnapUser getUser(String mobile) {
-		  return snapuserdao.getUser(mobile);  
+	public SnapUser getUser(String userId) {
+		  return snapuserdao.getUser(userId);  
 	}
 
-	public void updateData(SnapUser snapuser) {
-		  snapuserdao.updateData(snapuser);  
+	public String updateData(SnapUser snapuser, String id) {
+		   return snapuserdao.updateData(snapuser, id);  
 	}
 
 	public SnapUser validateuser(Login login) {

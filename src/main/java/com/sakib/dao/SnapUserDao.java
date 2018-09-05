@@ -9,7 +9,7 @@ public interface SnapUserDao {
 	 public void insertData(SnapUser user); 
 	 public SnapUser validateuser(Login login);
 	public List<SnapUser> getUserList();  
-	 public void updateData(SnapUser user);  
-	 public void deleteData(String id);  
-	 public SnapUser getUser(String email);  
+	 public String updateData(SnapUser snapuser, String id);  
+	 public String deleteData(String id);  
+	 public SnapUser getUser(String userId);  
 }

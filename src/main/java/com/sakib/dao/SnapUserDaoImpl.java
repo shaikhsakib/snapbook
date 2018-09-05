@@ -7,13 +7,14 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sakib.configuration.UserRowMapper;
 import com.sakib.model.Login;
 import com.sakib.model.SnapUser;
 
 public class SnapUserDaoImpl implements SnapUserDao{
-
+	
 	 @Autowired  
 	 DataSource dataSource;  
 	 JdbcTemplate jdbcTemplate;
@@ -38,27 +39,27 @@ public class SnapUserDaoImpl implements SnapUserDao{
 		  userList = jdbcTemplate.query(sql, new UserRowMapper());  
 		  return userList;  
 	}
-
-	public void updateData(SnapUser user) {
-
-		  String sql = "UPDATE snapuser set firstname = ?,lastname = ?, email = ?, mobile = ?, password = ?, where mobile=?";  
+	@Transactional
+	public String updateData(SnapUser user, String id) {
+		  String sql = "update snapuser set firstname = ?,lastname = ?, email = ?, mobile = ?, password = ? where id='"+id+"';";  
 		  JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  
-		  
 		  jdbcTemplate.update(  
-		    sql,  
-		    new Object[] { user.getFirstName(), user.getLastName(),  
-		      user.getEmail(), user.getMobile(), user.getPassword() });
-	
-		
+				    sql,  
+				    new Object[] { user.getFirstName(), user.getLastName(),  
+				      user.getEmail(), user.getMobile(), user.getPassword() });
+		  return id;
 	}
 
-	public void deleteData(String id) {
-		// TODO Auto-generated method stub
+	public String deleteData(String id) {
+		String sql = "delete from snapuser where id="+id;  
+		  JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  
+		  jdbcTemplate.update(sql);
+		return id;
 }
 
-	public SnapUser getUser(String mobile) {
+	public SnapUser getUser(String userId) {
 		List<SnapUser> userList = new ArrayList<SnapUser>();  
-		  String sql = "select * from snapuser where mobile='"+mobile+"';";  
+		  String sql = "select * from snapuser where id='"+userId+"';";  
 		  JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  
 		  userList = jdbcTemplate.query(sql, new UserRowMapper()); 
 		  if(userList.isEmpty()) {

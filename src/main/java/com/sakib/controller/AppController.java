@@ -85,11 +85,11 @@ public class AppController {
 	
 
 	 
-	@RequestMapping("/edit/{mobile}")  
-	 public ModelAndView editUser(@PathVariable String mobile,  
+	@RequestMapping("/edit/{userId}")  
+	 public ModelAndView editUser(@PathVariable String userId,  
 	   @ModelAttribute("user") SnapUser user) {  
 	  
-	  user = snapuserService.getUser(mobile);  
+	  user = snapuserService.getUser(userId);  
 	    
 	  List<String> usperproperties = new ArrayList<String>();
 	  usperproperties.add("userId");
@@ -107,13 +107,19 @@ public class AppController {
 	  
 	 } 
 	
-	@RequestMapping("/update")  
-	 public String updateUser(@ModelAttribute SnapUser user, BindingResult result) {  
-		snapuserService.updateData(user);
-		if(result.hasErrors()) {
-	  return "registrationform";  
-		}
-		return "userList";
+	@RequestMapping("/edit/update/{userId}")  
+	 public String updateUser(@PathVariable String userId, @ModelAttribute SnapUser user) { 
+		
+		snapuserService.updateData(user, userId);
+		System.out.println(user.getUserId());
+		return "redirect:/getList"; 
+	 } 
+	
+	 @RequestMapping("/delete/{userId}")  
+	 public String deleteUser(@PathVariable String userId) {  
+	  System.out.println("id = " + userId);  
+	  snapuserService.deleteData(userId);  
+	  return "redirect:/getList";  
 	 } 
 }	
 	

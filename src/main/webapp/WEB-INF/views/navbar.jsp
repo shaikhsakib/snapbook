@@ -14,11 +14,8 @@
     </div>
     <ul class="nav navbar-nav">
     </span></a>
-<c:url value="/edit" var="editUrl"></c:url>
-      <li><a href="${editUrl}">Reset Your Credentials</a></li>
       
       <li><a href="/snapbook/getList">List of Users</a></li>
-      <li><a href="#"></a></li>
     </ul>
   </div>
 </nav>

@@ -9,7 +9,7 @@ public interface SnapUserService {
 	public void insertData(SnapUser snapuser);
 	public SnapUser validateuser(Login login);
 	 public List<SnapUser> getUserList();  
-	 public void deleteData(String id);  
-	 public SnapUser getUser(String mobile);  
-	 public void updateData(SnapUser snapuser); 
+	 public String deleteData(String id);  
+	 public SnapUser getUser(String userId);  
+	 public String updateData(SnapUser snapuser, String id); 
 }

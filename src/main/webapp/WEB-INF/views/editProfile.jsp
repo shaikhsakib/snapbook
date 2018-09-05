@@ -18,7 +18,7 @@
   <h1 class="text-center">Edit User Details</h1>  
   <div class="container text-center"> 
   
-   <form:form method="post" action="update" modelAttribute="user">  
+   <form:form method="post" action="update/${map.user.userId}" modelAttribute="user">  
     <table>  
      <tr>  
       <td>First Name :</td>  

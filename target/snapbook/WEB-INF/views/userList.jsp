@@ -31,7 +31,7 @@
      <td>${user.lastName}</td>  
           <td>${user.email}</td>  
      <td>${user.mobile}</td> 
-     <c:url value="/edit/${user.mobile}" var="deleteUrl"></c:url>
+     <c:url value="/edit/${user.userId}" var="deleteUrl"></c:url>
      <td><a href="${deleteUrl }"><span class="glyphicon glyphicon-edit"></span></a>
 </td>  
     </tr>  
